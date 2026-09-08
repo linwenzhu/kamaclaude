@@ -13,7 +13,6 @@ from kama_claude.core.config import get_config
 from kama_claude.core.logging_setup import setup_logging
 from kama_claude.core.transport.socket_server import SocketServer
 
-
 logger = logging.getLogger(__name__)
 
 class CoreApp:
@@ -94,3 +93,14 @@ class CoreApp:
         )
 
         await shutdown.wait()
+
+        logger.info(
+            "shutting down"
+        )
+
+        await server.stop()
+
+def run() -> None:
+    asyncio.run(
+        CoreApp().run()
+    )
